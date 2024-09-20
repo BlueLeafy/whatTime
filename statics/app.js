@@ -12,22 +12,22 @@ document.addEventListener("DOMContentLoaded", () => {
     var now = new Date();
 
     // Hour
-    var lastHour = last.getHours().toString();
-    var nowHour = now.getHours().toString();
+    var lastHour = last.getHours().toString().padStart(2, '0');
+    var nowHour = now.getHours().toString().padStart(2, '0');
     if (lastHour !== nowHour) {
       updateContainer(hourContainer, nowHour);
     }
 
     // Minute
-    var lastMinute = last.getMinutes().toString();
-    var nowMinute = now.getMinutes().toString();
+    var lastMinute = last.getMinutes().toString().padStart(2, '0');
+    var nowMinute = now.getMinutes().toString().padStart(2, '0');
     if (lastMinute !== nowMinute) {
       updateContainer(minuteContainer, nowMinute);
     }
 
     // Second
-    var lastSecond = last.getSeconds().toString();
-    var nowSecond = now.getSeconds().toString();
+    var lastSecond = last.getSeconds().toString().padStart(2, '0');
+    var nowSecond = now.getSeconds().toString().padStart(2, '0');
     if (lastSecond !== nowSecond) {
       updateContainer(secondContainer, nowSecond);
     }
@@ -35,40 +35,79 @@ document.addEventListener("DOMContentLoaded", () => {
     last = now;
   }
 
+  // Date containers
+  const dateContainer = document.getElementById("date");
+  const dayContainer = document.getElementById("day");
+  const monthContainer = document.getElementById("month");
+  const yearContainer = document.getElementById("year");
+
+  // Arrays
+  const daysName = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+  const monthsName = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+
+
+  // Date handler
+  function dateHandler() {
+    var now = new Date();
+
+    // Date
+    var lastDate = last.getDate().toString().padStart(2, '0');
+    var nowDate = now.getDate().toString().padStart(2, '0');
+    if (lastDate !== nowDate) {
+      dateContainer.querySelector("span").textContent = nowDate;
+    }
+
+    // Day
+    var lastDay = last.getDay();
+    var nowDay = now.getDay();
+    if (lastDay !== nowDay) {
+      dayContainer.querySelector("span").textContent = daysName[nowDay];
+    }
+
+    // Month
+    var lastMonth = last.getMonth();
+    var nowMonth = now.getMonth();
+    if(lastMonth !== nowMonth) {
+      monthContainer.querySelector("span").textContent = monthsName[nowMonth];
+    }
+
+    // Year
+    var lastYear = last.getFullYear();
+    var nowYear = now.getFullYear();
+    if (lastYear !== nowYear) {
+      yearContainer.querySelector("span").textContent = nowYear;
+    }
+
+  }
+
   function updateContainer(container, newTime) {
-    var time = newTime.split('');
+    // Time
+    var [tens, units] = newTime.split('');
 
-    if (time.length === 1) {
-      time.unshift('0');
+    var tensElement = container.querySelector(".tens .number");
+    if (tensElement.textContent !== tens) {
+      updateNumber(tensElement, tens);
     }
 
-    var tens = container.querySelector(".tens .number");
-    if (tens.textContent !== time[0]) {
-      updateNumber(tens, time[0]);
-    }
-
-    var units = container.querySelector(".units .number");  // Fixed typo
-    if (units.textContent !== time[1]) {
-      updateNumber(units, time[1]);
+    var unitsElement = container.querySelector(".units .number");  // Fixed typo
+    if (unitsElement.textContent !== units) {
+      updateNumber(unitsElement, units);
     }
   }
 
   function updateNumber(element, newNumber) {
-    if(!element.textContent !== newNumber) {
-      const clone = element.cloneNode(true);  
+    // Update span .numer
+    element.textContent = newNumber;
 
-      element.classList.add("move")
-
-      clone.textContent = newNumber;
-
-      element.parentElement.appendChild(clone);
-
-
-      setTimeout(() => {
-        element.remove();
-      }, 1)
-    }    
+    // update data-mirror attr
+    element.setAttribute('data-mirror', newNumber);
   }
 
-  setInterval(timeHandler, 100);
+  dateHandler();
+  timeHandler();
+
+  setInterval(() => {
+    timeHandler();
+    dateHandler();
+   }, 1000);
 });

@@ -10,31 +10,50 @@
 </head>
 <body>
 
+    <div id="dateContainer">
+        <div class="top-row">
+            <div id="date">
+                <span></span>
+            </div>
+            <div id="day">
+                <span></span>
+            </div>
+        </div>
+        <div class="bottom-row">
+            <div id="month">
+                <span></span>
+            </div>
+            <div id="year">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
     <div id="timeContainer">
         <div id="hourContainer">
             <div class="tens">
-                <span class="number">0</span>
+                <span class="number" data-mirror="">0</span>
             </div>
             <div class="units">
-                <span class="number">0</span>
+                <span class="number" data-mirror="0">0</span>
             </div>
         </div>
         <div class="tick">:</div>
         <div id="minuteContainer">
             <div class="tens">
-                <span class="number">0</span>
+                <span class="number" data-mirror="0">0</span>
             </div>
             <div class="units">
-                <span class="number">0</span>
+                <span class="number" data-mirror="0">0</span>
             </div>
         </div>
         <div class="tick">:</div>
         <div id="secondContainer">
             <div class="tens">
-                <span class="number">0</span>
+                <span class="number" data-mirror="0">0</span>
             </div>
             <div class="units infinite">
-                <span class="number">0</span>
+                <span class="number" data-mirror="0">0</span>
             </div>
         </div>
     </div>
