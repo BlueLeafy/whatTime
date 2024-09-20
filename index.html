@@ -3,36 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What Time is it?</title>
+    <title>Document</title>
 
     <link rel="stylesheet" href="statics/styles.css">
     <script src="statics/app.js"></script>
 </head>
 <body>
 
-    <h1>What Time is it?</h1>
-
-    <div class="dateTime-wrapper">
-        <p id="date" class="date"></p>
-
-        <div class="time-container">
-            <div id="hour" class="time-box">
-                <div id="hour-tens" class="digit-box"></div>
-                <div id="hour-units" class="digit-box"></div>
+    <div id="timeContainer">
+        <div id="hourContainer">
+            <div class="tens">
+                <span class="number">0</span>
             </div>
-            <div class="dots">
-                <span>:</span>
+            <div class="units">
+                <span class="number">0</span>
             </div>
-            <div id="minute" class="time-box">
-                <div id="minute-tens" class="digit-box"></div>
-                <div id="minute-units" class="digit-box"></div>
+        </div>
+        <div class="tick">:</div>
+        <div id="minuteContainer">
+            <div class="tens">
+                <span class="number">0</span>
             </div>
-            <div class="dots">
-                <span>:</span>
+            <div class="units">
+                <span class="number">0</span>
             </div>
-            <div id="second" class="time-box second">
-                <div id="second-tens" class="digit-box"></div>
-                <div id="second-units" class="digit-box"></div>
+        </div>
+        <div class="tick">:</div>
+        <div id="secondContainer">
+            <div class="tens">
+                <span class="number">0</span>
+            </div>
+            <div class="units infinite">
+                <span class="number">0</span>
             </div>
         </div>
     </div>

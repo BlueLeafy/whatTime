@@ -1,67 +1,74 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const dateParagraph = document.getElementById("date");
+  // Time container
+  const hourContainer = document.getElementById("hourContainer");
+  const minuteContainer = document.getElementById("minuteContainer");
+  const secondContainer = document.getElementById("secondContainer");
 
-    const hourTensBox = document.getElementById("hour-tens");
-    const hourUnitsBox = document.getElementById("hour-units");
-    const minuteTensBox = document.getElementById("minute-tens");
-    const minuteUnitsBox = document.getElementById("minute-units");
-    const secondTensBox = document.getElementById("second-tens");
-    const secondUnitsBox = document.getElementById("second-units");
+  // Last date
+  let last = new Date(0);
+  last.setUTCHours(-1);
 
+  function timeHandler() {
+    var now = new Date();
 
-
-    function updateTimeBoxes(hourTens, hourUnits, minuteTens, minuteUnits, secondTens, secondUnits) {
-        hourTensBox.innerText = hourTens;
-        hourUnitsBox.innerText = hourUnits;
-        minuteTensBox.innerText = minuteTens;
-        minuteUnitsBox.innerText = minuteUnits;
-        secondTensBox.innerText = secondTens;
-        secondUnitsBox.innerText = secondUnits;
+    // Hour
+    var lastHour = last.getHours().toString();
+    var nowHour = now.getHours().toString();
+    if (lastHour !== nowHour) {
+      updateContainer(hourContainer, nowHour);
     }
 
-    function dateTimeHandler() {
-        const nowDate = new Date(); // Today
-
-        // Format date
-        const date = nowDate.getDate(); // Date number
-        const dayIndex = nowDate.getDay(); // Day index
-
-        // Array day names
-        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-        const dayName = daysOfWeek[dayIndex]; // Day name from index
-        const monthIndex = nowDate.getMonth(); // Month index
-
-        // MonthNames array
-        const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        const monthName = monthsOfYear[monthIndex]; // Month name from index
-        const year = nowDate.getFullYear(); // Year
-
-        // Update text paragraphs
-        const dateText = `${dayName}, ${monthName} ${date}, ${year}`;
-        dateParagraph.innerText = dateText;
-
-        // Format time
-        const hour = String(nowDate.getHours()).padStart(2, '0'); // Hour
-        const minutes = String(nowDate.getMinutes()).padStart(2, '0'); // Minutes
-        const seconds = String(nowDate.getSeconds()).padStart(2, '0'); // Seconds
-
-        // Split into digits
-        const hourTens = hour[0];
-        const hourUnits = hour[1];
-        const minuteTens = minutes[0];
-        const minuteUnits = minutes[1];
-        const secondTens = seconds[0];
-        const secondUnits = seconds[1];
-
-        // Update time boxes
-        updateTimeBoxes(hourTens, hourUnits, minuteTens, minuteUnits, secondTens, secondUnits);
+    // Minute
+    var lastMinute = last.getMinutes().toString();
+    var nowMinute = now.getMinutes().toString();
+    if (lastMinute !== nowMinute) {
+      updateContainer(minuteContainer, nowMinute);
     }
 
-    // Function call
-    dateTimeHandler();
+    // Second
+    var lastSecond = last.getSeconds().toString();
+    var nowSecond = now.getSeconds().toString();
+    if (lastSecond !== nowSecond) {
+      updateContainer(secondContainer, nowSecond);
+    }
 
-    // Run function every second
-    setInterval(dateTimeHandler, 1000);
+    last = now;
+  }
 
+  function updateContainer(container, newTime) {
+    var time = newTime.split('');
+
+    if (time.length === 1) {
+      time.unshift('0');
+    }
+
+    var tens = container.querySelector(".tens .number");
+    if (tens.textContent !== time[0]) {
+      updateNumber(tens, time[0]);
+    }
+
+    var units = container.querySelector(".units .number");  // Fixed typo
+    if (units.textContent !== time[1]) {
+      updateNumber(units, time[1]);
+    }
+  }
+
+  function updateNumber(element, newNumber) {
+    if(!element.textContent !== newNumber) {
+      const clone = element.cloneNode(true);  
+
+      element.classList.add("move")
+
+      clone.textContent = newNumber;
+
+      element.parentElement.appendChild(clone);
+
+
+      setTimeout(() => {
+        element.remove();
+      }, 1)
+    }    
+  }
+
+  setInterval(timeHandler, 100);
 });
