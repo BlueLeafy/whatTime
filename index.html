@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,55 +9,82 @@
     <link rel="stylesheet" href="statics/styles.css">
     <script src="statics/app.js"></script>
 </head>
-<body>
 
-    <div id="dateContainer">
-        <div class="top-row">
-            <div id="date">
-                <span></span>
-            </div>
-            <div id="day">
-                <span></span>
-            </div>
-        </div>
-        <div class="bottom-row">
-            <div id="month">
-                <span></span>
-            </div>
-            <div id="year">
-                <span></span>
-            </div>
-        </div>
-    </div>
+<body id="body">
 
-    <div id="timeContainer">
-        <div id="hourContainer">
-            <div class="tens">
-                <span class="number" data-mirror="">0</span>
-            </div>
-            <div class="units">
-                <span class="number" data-mirror="0">0</span>
-            </div>
+    <!-- whaTime -->
+    <div id="calendarContainer">
+        <div id="dateContainer">
+                <div id="day">
+                    <span></span>
+                </div>
+                <div id="date">
+                    <span></span>
+                </div>
+                <div id="month">
+                    <span></span>
+                </div>
+                <div id="year">
+                    <span></span>
+                </div>
         </div>
-        <div class="tick">:</div>
-        <div id="minuteContainer">
-            <div class="tens">
-                <span class="number" data-mirror="0">0</span>
-            </div>
-            <div class="units">
-                <span class="number" data-mirror="0">0</span>
-            </div>
-        </div>
-        <div class="tick">:</div>
-        <div id="secondContainer">
-            <div class="tens">
-                <span class="number" data-mirror="0">0</span>
-            </div>
-            <div class="units infinite">
-                <span class="number" data-mirror="0">0</span>
-            </div>
-        </div>
-    </div>
     
+        <div id="timeContainer">
+            <div id="hourContainer">
+                <div class="tens">
+                    <span class="number" data-mirror="">0</span>
+                </div>
+                <div class="units">
+                    <span class="number" data-mirror="0">0</span>
+                </div>
+            </div>
+            <div class="tick">:</div>
+            <div id="minuteContainer">
+                <div class="tens">
+                    <span class="number" data-mirror="0">0</span>
+                </div>
+                <div class="units">
+                    <span class="number" data-mirror="0">0</span>
+                </div>
+            </div>
+            <div class="tick">:</div>
+            <div id="secondContainer">
+                <div class="tens">
+                    <span class="number" data-mirror="0">0</span>
+                </div>
+                <div class="units infinite">
+                    <span class="number" data-mirror="0">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Countdowns and holidays greetings -->
+    <div id="countdown">
+        <!-- greetings -->
+        <div id="greetings">
+            <span></span>
+        </div>
+        <!-- countdown -->
+        <div id="counts">
+            <div id="countDay" class="text">
+                <span class="digits"></span>
+                <span class="alpha"></span>
+            </div>
+            <div id="countHour" class="text">
+                <span class="digits"></span>
+                <span class="alpha"></span>
+            </div>
+            <div id="countMinut" class="text">
+                <span class="digits"></span>
+                <span class="alpha"></span>
+            </div>
+            <div id="countSec" class="text">
+                <span class="digits"></span>
+                <span class="alpha"></span>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
