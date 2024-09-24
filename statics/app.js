@@ -107,11 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Define list of holidays with names, month, day and message (no year, it hanlded synamically)
   // Months are 0-indexed
   const holidays = [
-    { name: "easter", month: 3, day: 31, message: "happy easter!", backgUrl: "statics/img/1920x1200Halloween01.jpg" },
+    { name: "easter", month: 3, day: 31, message: "happy easter!", backgUrl: "statics/img/easter1920x1200.jpg" },
     { name: "halloween", month: 9, day: 31, message: "happy halloween!", backgUrl: "statics/img/1920x1080Halloween.jpg" },
-    { name: "newYearEve", month: 11, day: 31, message: "happy new year!", backgUrl: "statics/img/1920x1080Halloween.jpg" },
-    { name: "christmas", month: 11, day: 25, message: "merry christmas!", backgUrl: "statics/img/1920x1080Halloween.jpg" },
-    { name: "new", month: 8, day: 30, message: "happy new!", backgUrl: "statics/img/BlueWave1920x1200.jpg" }, // Sept 30 BlueWave1920x1200.jpg
+    { name: "newYearEve", month: 11, day: 31, message: "happy new year!", backgUrl: "statics/img/nye1920x1200.webp" },
+    { name: "christmas", month: 11, day: 25, message: "merry christmas!", backgUrl: "statics/img/xmas1920x1200.jpg" }
   ]
 
   // Get the time difference until a give date
@@ -191,7 +190,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // First, check if today is the holiday
     if (now.toDateString() === nextHoliday.date.toDateString()) {
       greets.parentElement.style.display = "block";
-      // greets.parentElement.style.width = "84%";
       greets.textContent = nextHoliday.message; // Display holiday message
       bodyBg.style.backgroundImage = `url(${nextHoliday.backgUrl})`;
       countContainer.forEach((text) => text.style.display = "none"); // Hide countdown
@@ -201,7 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Handle the countdown if the holiday is coming up
     if (nextHoliday.date <= thirtyDaysFromNow && time) {
       greets.parentElement.style.display = "block";
-      // greets.parentElement.style.width = "auto";
       greets.textContent = `To ${nextHoliday.name}`; // Display countdown greeting
       bodyBg.style.backgroundImage = `url(${nextHoliday.backgUrl})`;
       checkImageBrightness(nextHoliday.backgUrl); // Check brightness
